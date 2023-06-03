@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<!--
+    p-10       : Padding 10 from all side
+    flex       : to stack products horizontally
+    m-{size}   (margin)
+    mt-{size}  (margin-top)
+    mr-{size}  (margin-right)
+    mb-{size}  (margin-bottom)
+    ml-{size}  (margin-left)
+    mx-{size}  (horizontal margin)
+    my-{size}  (vertical margin)
+    px         : Padding-X
+    py         : Padding-Y
+    rounded-sm : rounded small
+    pl-10      : padding left 10
+
+-->
+
+    <div class="flex p-10">
+        <div>
+            <img src="https://cdn.dribbble.com/users/1208688/screenshots/4563859/no-found.gif" alt="">
+        </div>
+
+        <div class="pl-10">
+            <div class="text-4xl mb-4">{{product.name}}</div>
+            <div class="mb-4">{{product.description}}</div>
+            <div class="mb-4 text-green-700 font-bold">USD {{product.price}}</div>
+            <div>
+                <button id="checkout-button" class="bg-green-500 text-white px-4 py-2 rounded-sm">Buy now</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

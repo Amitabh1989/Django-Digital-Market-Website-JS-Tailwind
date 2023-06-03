@@ -1,0 +1,50 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<!--
+    p-10       : Padding 10 from all side
+    flex       : to stack products horizontally
+    m-{size}   (margin)
+    mt-{size}  (margin-top)
+    mr-{size}  (margin-right)
+    mb-{size}  (margin-bottom)
+    ml-{size}  (margin-left)
+    mx-{size}  (horizontal margin)
+    my-{size}  (vertical margin)
+    px         : Padding-X
+    py         : Padding-Y
+    rounded-sm : rounded small
+    pl-10      : padding left 10
+
+-->
+
+<div class="product-container flex">
+    {% for p in products %}
+        <div class="product shadow-lg w-1/4 rounded-lg m-10">
+            <div class="product-image">
+                {% comment %} <img src="https://cdn.dribbble.com/users/1208688/screenshots/4563859/no-found.gif" alt=""> {% endcomment %}
+                <img src="https://media4.giphy.com/avatars/danielfigueirdo/mR5uHXLuePGT.gif" alt="">
+            </div>
+            <div class="p-5">
+                <div class="font-bold">
+                    {{ p.name }}
+                </div>
+                <div>
+                    {{ p.description }}
+                </div>
+                <div class="text-green-700 font-bold">
+                USD {{ p.price }}
+                </div>
+                <div class="mt-5">
+                    <a class="bg-green-500 text-white px-4 py-2" href="{% url 'myapp:product_detail' p.id %}">View details</a>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+
