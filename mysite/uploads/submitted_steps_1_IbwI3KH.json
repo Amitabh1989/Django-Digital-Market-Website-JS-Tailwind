@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "raid_type": "R0",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 2,
+        "raid_type": "R0",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 3,
+        "raid_type": "R0",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 4,
+        "raid_type": "R5",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 5,
+        "raid_type": "R50",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 6,
+        "raid_type": "R50",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 7,
+        "raid_type": "R50",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 8,
+        "raid_type": "R50",
+        "stripe_size": 256,
+        "num_drives": 1
+    },
+    {
+        "id": 9,
+        "raid_type": "JBODs",
+        "stripe_size": 1024,
+        "num_drives": 1
+    },
+    {
+        "id": 10,
+        "raid_type": "JBODs",
+        "stripe_size": 1024,
+        "num_drives": 2
+    },
+    {
+        "id": 11,
+        "raid_type": "JBODs",
+        "stripe_size": 1024,
+        "num_drives": 2
+    },
+    {
+        "id": 12,
+        "raid_type": "JBODs",
+        "stripe_size": 1024,
+        "num_drives": 2
+    }
+]

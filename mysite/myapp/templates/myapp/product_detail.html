@@ -31,8 +31,55 @@
             <div>
                 <button id="checkout-button" class="bg-green-500 text-white px-4 py-2 rounded-sm">Buy now</button>
             </div>
+            </div>
+                {% comment %} <div id="myemail" hidden>{{ request.user.email }}</div> {% endcomment %}
+                <div id="myemail">{{ request.user.email }}</div>
+            </div>
         </div>
     </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript">
+        var stripe = Stripe("{{ stripe_publishable_key }}");
+        console.log("Stripe key : " + stripe)
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            console.log("Button clicked");
+            var email = document.getElementById("myemail").innerText;
+            console.log("Email : " + email)
+        
+            if (email.length == 0) {
+                alert("Please enter your email address");
+                return;
+            }
+
+            fetch("{% url 'myapp:api_session' product.id %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                body: JSON.stringify(
+                    { email: email },
+                    )
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: session.session_id });  // Come from return of the CheckoutView
+            })
+            .then(function (result) {
+                if (result.error) {
+                alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+            });
+      });
+    </script>
+    
 
 {% endblock content %}
 

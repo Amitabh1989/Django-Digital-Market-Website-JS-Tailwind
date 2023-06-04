@@ -1,0 +1,18 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="w-1/2 m-20">
+
+    <div>
+        <h1 class="font-bold text-4xl pl-10 mb-10">Product deleted successfully!</h1>
+    </div>
+    <div>
+        <a class="bg-blue-500 text-white text-bold ml-12 px-4 py-2" href="{% url 'myapp:product_list' %}">View product list</a>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+

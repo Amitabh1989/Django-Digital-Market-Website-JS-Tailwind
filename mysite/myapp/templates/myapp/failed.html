@@ -1,0 +1,20 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+    <div class="grid place-items-center h-screen">
+        <div class="font-bold text-6xl">Payment Failed!</div>
+
+        <div class="font-bold text=3xl text-red-600">
+                {{product.name}} (USD {{product.price}}) order failed!!
+        </div>
+
+        <form method="post" action="{% url 'myapp:failed' %}">
+            {% csrf_token %}
+            <button type="submit">{{error_message}}</button>
+          </form>
+          
+        <a class="bg-red-500 font-bol text-white px-4 py-4 rounded-lg" href="{% url 'myapp:index' %}">Go back to home page</a>
+    </div>
+
+{% endblock content %}
