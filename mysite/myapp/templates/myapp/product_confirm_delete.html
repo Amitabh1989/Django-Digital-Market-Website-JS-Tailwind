@@ -1,0 +1,18 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="w-1/2 m-20">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="text-bold text-xl2 mb-10">Are you sure you want to delete {{product.name}} ?</div>
+        <div>
+            <input class="bg-red-400 text-white px-4 py-2" type="submit" value="Delete">
+            <a class="bg-blue-400 text-white px-4 py-2" href="{% url 'myapp:product_list' %}">Cancel</a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock content %}
+

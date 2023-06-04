@@ -9,6 +9,7 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name}'
+    
 
 class Order(models.Model):
     customer_email = models.EmailField()

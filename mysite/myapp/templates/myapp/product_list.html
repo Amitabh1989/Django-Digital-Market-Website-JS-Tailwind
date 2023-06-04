@@ -37,7 +37,11 @@
                 USD {{ p.price }}
                 </div>
                 <div class="mt-5">
-                    <a class="bg-green-500 text-white px-4 py-2" href="{% url 'myapp:product_detail' p.id %}">View details</a>
+                    <a class="bg-green-500 text-white px-4 py-2 rounded-sm" href="{% url 'myapp:product_detail' p.id %}">View details</a>
+                {% comment %} </div>
+                <div class="mt-5"> {% endcomment %}
+                    <a class="bg-green-500 text-white px-4 py-2 rounded-sm" href="{% url 'myapp:product_update' p.id %}">Update details</a>
+                    <a class="bg-red-500 text-white px-4 py-2 rounded-sm" href="{% url 'myapp:delete_product' p.id %}">Delete Product</a>
                 </div>
 
             </div>
