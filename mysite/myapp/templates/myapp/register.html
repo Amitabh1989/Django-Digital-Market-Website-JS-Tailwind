@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="flex w-1/4">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{form.errors}}
+        <input type="submit" value="Register">
+    </form>
+
+</div>
+{% endblock content %}

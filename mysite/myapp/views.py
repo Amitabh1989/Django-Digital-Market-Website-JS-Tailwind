@@ -1,6 +1,6 @@
 
 from django import http
-from .forms import ProductForm
+from .forms import ProductForm, UserRegistrationForm
 from django.contrib import messages
 from typing import Any, Dict
 from django.db.models.query import QuerySet
@@ -109,17 +109,10 @@ class ProductUpdateView(UpdateView):
 class EditSuccessView(TemplateView):
     template_name = 'myapp/edit_success.html'
 
-
-# class DeleteProductView(DeleteView):
-#     model = Product
-#     template_name = 'myapp/edit_success.html'
-
-
 class DeleteProductView(DeleteView):
     print("Inside Delete View")
     model = Product
     success_url = reverse_lazy('myapp:delete_success')
-
 
 class DeleteSuccessView(TemplateView):
     print("Inside Delete success View")
@@ -285,3 +278,20 @@ class PaymentFailedView(TemplateView):
         # For example, update the order status, send notification, etc.
 
         return redirect('myapp:checkout')
+
+
+class DashboardView(ListView):
+    model = Product
+    context_object_name = "product_list"
+    template_name = "myapp/dashboard.html"
+
+
+class UserRegistrationView(CreateView):
+    form_class = UserRegistrationForm
+    template_name = 'myapp/register.html'
+
+    def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        if request.method == "POST":
+            user_form = UserRegistrationForm(request.POST)
+            user_form.save()
+            return redirect(request, '')
