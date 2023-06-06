@@ -48,5 +48,14 @@
         {{form.errors}}
     </form>
 
+    <!--
+        Added Register link
+    -->
+
+    <p class="m-10">
+        Already Registered? <span> <a class="text-indigo-500 font-bold" href="{% url 'myapp:login' %}">Login</a> </span>
+    </p>
+
+
 </div>
 {% endblock content %}
