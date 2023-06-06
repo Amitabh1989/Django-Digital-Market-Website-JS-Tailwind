@@ -293,5 +293,7 @@ class UserRegistrationView(CreateView):
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         if request.method == "POST":
             user_form = UserRegistrationForm(request.POST)
-            user_form.save()
-            return redirect(request, '')
+            if user_form.is_valid():
+                user_form.password1 = user_form.cleaned_data['password1']
+                user_form.save()
+                return redirect(reverse('myapp:edit_success'))
