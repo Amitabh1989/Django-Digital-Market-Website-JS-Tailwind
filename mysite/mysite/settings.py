@@ -128,3 +128,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Change the default LOGIN REDIRECT to page of your wish
+LOGIN_REDIRECT_URL = "/myapp/product_list/"

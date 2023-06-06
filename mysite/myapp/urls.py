@@ -5,6 +5,7 @@ from .views import (
     ProductUpdateView, EditSuccessView, DeleteProductView,
     DeleteSuccessView, DashboardView, UserRegistrationView
     )
+from django.contrib.auth import views as auth_views
 
 app_name = "myapp"
 
@@ -23,4 +24,6 @@ urlpatterns = [
     path("delete_success/", DeleteSuccessView.as_view(), name='delete_success'),
     path("dashboard/", DashboardView.as_view(), name='dashboard'),
     path("register/", UserRegistrationView.as_view(), name='register'),
+    path("login/", auth_views.LoginView.as_view(template_name='myapp/login.html'), name='login'),
+    path("logout/", auth_views.LogoutView.as_view(template_name='myapp/logout.html'), name='logout'),
 ]

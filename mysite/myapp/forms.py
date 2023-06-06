@@ -23,5 +23,6 @@ class UserRegistrationForm(forms.ModelForm):
 
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords do not match!")
-        
+        print("Cleaned data : {}".format(cleaned_data))
         return cleaned_data
+

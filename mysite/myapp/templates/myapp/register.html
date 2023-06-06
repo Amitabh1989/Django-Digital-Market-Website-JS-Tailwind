@@ -2,13 +2,60 @@
 
 {% block content %}
 
-<div class="flex w-1/4">
-    <form action="" method="POST">
+<div class="flex flex-col justify-center items-center min-h-screen">
+    <h1 class="font-bold text-lg"> Register </h1>
+
+    <form class="shadow-lg p-10 m-5" action="" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        <div class="mb-2">
+            <label for="">Firstname</label>
+            <div class="border rounded-sm py-2 px-2 mr-10">
+                {{ form.first_name }}
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="">Username</label>
+            <div class="border rounded-sm py-2 px-2 mr-10">
+                {{ form.username }}
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="">Email</label>
+            <div class="border rounded-sm py-2 px-2 mr-10">
+                {{ form.email }}
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="">Password</label>
+            <div class="border rounded-sm py-2 px-2 mr-10">
+                {{ form.password1 }}
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="">Retype Password</label>
+            <div class="border rounded-sm py-2 px-2 mr-10">
+                {{ form.password2 }}
+            </div>
+        </div>
+
+        <div>
+            <input class="bg-green-500 text-white rounded-sm px-4 py-2" type="submit" value="Submit">
+        </div>
         {{form.errors}}
-        <input type="submit" value="Register">
     </form>
+
+    <!--
+        Added Register link
+    -->
+
+    <p class="m-10">
+        Already Registered? <span> <a class="text-indigo-500 font-bold" href="{% url 'myapp:login' %}">Login</a> </span>
+    </p>
+
 
 </div>
 {% endblock content %}
