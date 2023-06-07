@@ -12,6 +12,9 @@ This project is a web application built using Django, Tailwind CSS, SQLite, and 
 - JavaScript: A programming language used for client-side interactions.
 - Stripe: A payment processing platform for handling online payments.
 
+## Fun GIF!
+<img src="https://cdn-idpgf.nitrocdn.com/TSeLIaDKAUBecatjFLZJpxhTJKErGZRH/assets/images/optimized/rev-ac4e747/insights/wp-content/uploads/2022/03/What-Is-An-online-Marketplace.gif" height="500px" width="700px">
+
 ## Features
 
 ### User Authentication
