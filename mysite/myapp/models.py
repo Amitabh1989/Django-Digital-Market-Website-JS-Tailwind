@@ -1,11 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Product(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     price = models.FloatField()
     file = models.FileField(upload_to='uploads')
+    total_sales_amount = models.IntegerField(default=0)
+    total_sales = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -19,3 +23,6 @@ class Order(models.Model):
     has_pad = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.products}'

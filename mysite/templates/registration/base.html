@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Home Page</title>
+</head>
+<body>
+    <nav class="shadow-lg">
+        <div class="flex flex-wrap justify-between ml-5 items-center mx-auto px-4 py-2.5">
+            <a href="" class="flex items-center">
+                <img class="h-15 mr-3" src="https://cdn2.iconfinder.com/data/icons/artificial-intelligence-6/64/ArtificialIntelligence12-512.png" height=50 width=50 alt="">
+                <span class="self-center text-xml font-semibold">Nebula Marketplace</span>
+            </a>
+            
+            <div class="flex items-center">
+                <a href="" class="mr-6 text=sm font-medium text-grey-500">Dashboard</a>
+                <a href="" class="mr-6 text=sm font-medium text-grey-500">Sales</a>
+                <a href="" class="mr-6 text=sm font-medium text-grey-500">Orders</a>
+                <a href="{% url 'myapp:create_product' %}" class="mr-6 text=sm font-medium text-grey-500">Create Products</a>
+                <a href="" class="mr-6 text=sm font-medium text-grey-500">My Purchases</a>
+                <a href="{% url 'myapp:logout' %}" class="mr-6 text=sm font-medium text-grey-500">Logout</a>
+            </div>
+
+        </div>
+    </nav>
+
+    {% block content %}
+    
+    
+    {% endblock content %}
+
+</body>
+</html>

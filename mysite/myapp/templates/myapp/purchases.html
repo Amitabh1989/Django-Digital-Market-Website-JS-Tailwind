@@ -1,0 +1,62 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+
+<div class="text-3xl font-bold ml-20 mt-10">Your purchase list</div>
+
+<div class="purchase-container p-10 m-5">
+
+    <div class="flex mt-5 ml-5 p-2 justify-between">
+        <div>
+            <div class="text-black-400 text-xl font-bold ml-10">Product</div>
+        </div>
+        <div>
+            <div class="text-black-400 text-xl font-bold">Total</div>
+        </div>
+        <div>
+            <div class="text-black-400 text-xl font-bold">Seller</div>
+        </div>
+        <div>
+            <div class="text-black-400 text-xl font-bold">Purchased on</div>
+        </div>
+        <div>
+            <div class="text-black-400 text-xl font-bold mr-10">Download Link</div>
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+    {% for item in products %}
+        <div class="flex m-5 p-2 justify-between shadow-lg">
+            <div>
+                <div class="text-black-400 text-xl font-bold ml-5">{{item.products}}</div>
+                <div class="text-grey-400 text-sm ml-5">Products</div>
+            </div>
+            <div>
+                <div class="text-green-400 text-lg font-bold">${{item.amount}}</div>
+                <div class="text-grey-400 text-sm">Amount</div>
+            </div>
+            <div>
+                <div class="text-grey-400 text-xl">{{item.products.seller}}</div>
+                <div class="text-grey-400 text-sm">Seller</div>
+            </div>
+            <div>
+                <div class="text-grey-400 text-xl mr-10">{{item.created_on}}</div>
+                <div class="text-grey-400 text-xs mr-10">Purchased</div>
+            </div>
+            <div>
+                <a href="{{item.products.file.url}}"><div class="bg-green-400 text-white font-bold rounded-sm mr-5 px-6 py-2 text-center">Download</div></a>
+            </div>
+            
+        </div>
+
+{% endfor %}
+</div>
+
+{% endblock content %}

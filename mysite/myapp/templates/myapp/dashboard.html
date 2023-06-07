@@ -3,49 +3,51 @@
 {% block content %}
 
 <div class="flex justify-between">
-    <div class="ml-20 mt-10 font-bold text-xl">My Products</div>
+    <div class="ml-20 mt-10 font-bold text-3xl">{{ user.username | capfirst }}, your products dashboard</div>
     <div class="bg-green-500 text-white mr-40 px-4 py-2 mt-10">
         <a href="{% url 'myapp:create_product' %}">New Product</a>
     </div>    
 </div>
 
 <div class="products-container p-10 m-5">
-    {% for p in product_list %}
-        <div class="flex m-5 p-2 justify-between shadow-lg">
-            <div class="flex w-1/4">
-                <img class="h-20" src="https://cdn.dribbble.com/users/1208688/screenshots/4563859/no-found.gif" alt="">
-                <div class="relative group">
-                    <div class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 p-6 justify-center items-end bg-white font-bold">
-                        <a href="{% url 'myapp:product_update' p.id %}">Edit Product</a>
-                    </div>
-                    <div>
-                        <div class='ml-5'>
-                            <div class="font-bold text-lg">{{ p.name }}</div>
-                            <div class="font-extrabold text-sm text-green-600">${{ p.price }}</div>
+    {% if product_list|length == 0 %}
+        <img src="https://24.media.tumblr.com/3482fcce0d799141679353284e11da75/tumblr_n2teoqoGUO1smkwalo1_1280.gif" alt="">
+        <div class="ml-10 mt-15 font-bold text-grey-400 text-lg">Oh ho, nothing found. Come on, get started and list your First product!</div>
+    {% else %}
+
+        {% for p in product_list %}
+            <div class="flex m-5 p-2 justify-between shadow-lg">
+                <div class="flex w-1/4">
+                    <img class="h-20" src="https://cdn.dribbble.com/users/1208688/screenshots/4563859/no-found.gif" alt="">
+                    <div class="relative group">
+                        <div class="opacity-0 group-hover:opacity-100 duration-300 absolute inset-x-0 bottom-0 p-6 justify-center items-end bg-white font-bold">
+                            <a href="{% url 'myapp:product_update' p.id %}">Edit Product</a>
+                        </div>
+                        <div>
+                            <div class='ml-5'>
+                                <div class="font-bold text-lg">{{ p.name }}</div>
+                                <div class="font-extrabold text-sm text-green-600">${{ p.price }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="text-2xl mt-2">$200</div>
-                <div class="text-xs">Total Earnings</div>
-            </div>
-            <div>
-                <div class="text-2xl mt-2">20</div>
-                <div class="text-xs">Total Orders</div>
-            </div>
-            <div>
-                <div class="text-2xl mt-2 mr-4">4.8</div>
-                <div class="text-xs mr-4">Ratings</div>
-            </div>
+                <div>
+                    <div class="text-2xl mt-2">${{ p.total_sales_amount }}</div>
+                    <div class="text-xs">Total Earnings</div>
+                </div>
+                <div>
+                    <div class="text-2xl mt-2">{{ p.total_sales }}</div>
+                    <div class="text-xs">Total Orders</div>
+                </div>
+                <div>
+                    <div class="text-2xl mt-2 mr-4">4.8</div>
+                    <div class="text-xs mr-4">Ratings</div>
+                </div>
 
-        </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
 </div>
 
-
 {% endblock content %}
-
-
-

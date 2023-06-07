@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="flex flex-col justify-center items-center min-h-screen">
-    <h1 class="font-bold text-lg"> Login </h1>
+    <h1 class="font-bold text-xl"> Welcome back, Login </h1>
 
     <form class="shadow-lg p-10 m-5" action="" method="POST">
         {% csrf_token %}
@@ -16,7 +16,7 @@
         </div>
 
         <div class="mb-2">
-            <label for="">Password Password</label>
+            <label for="">Password</label>
             <div class="border rounded-sm py-2 px-2 mr-10">
                 {{ form.password }}
             </div>
@@ -25,7 +25,6 @@
         <div>
             <input class="bg-green-500 text-white rounded-sm px-4 py-2" type="submit" value="Login">
         </div>
-        {{form.errors}}
     </form>
 
     <!--
