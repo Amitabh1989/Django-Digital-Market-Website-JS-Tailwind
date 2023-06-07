@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="flex flex-col justify-center items-center min-h-screen">
+    <h1 class="font-bold text-lg mb-10"> You have been logged out </h1>
+    <p>
+        <span>Click here to </span>
+            <a class="text-indigo-500" href="{% url 'myapp:login' %}">    
+                <span class="bg-green-500 rounded-sm px-4 py-2 m-2">Log in</span>
+            </a>
+    </span>
+</p>
+</div>
+{% endblock content %}

@@ -15,12 +15,16 @@
             </a>
             
             <div class="flex items-center">
-                <a href="" class="mr-6 text=sm font-medium text-grey-500">Dashboard</a>
+                <a href="{% url 'myapp:dashboard' %}" class="mr-6 text=sm font-medium text-grey-500">Dashboard</a>
                 <a href="" class="mr-6 text=sm font-medium text-grey-500">Sales</a>
                 <a href="" class="mr-6 text=sm font-medium text-grey-500">Orders</a>
-                <a href="" class="mr-6 text=sm font-medium text-grey-500">Create Products</a>
-                <a href="" class="mr-6 text=sm font-medium text-grey-500">My Purchases</a>
-                <a href="{% url 'myapp:logout' %}" class="mr-6 text=sm font-medium text-grey-500">Logout</a>
+                <a href="{% url 'myapp:create_product' %}" class="mr-6 text=sm font-medium text-grey-500">Create Products</a>
+                <a href="{% url 'myapp:purchases' %}" class="mr-6 text=sm font-medium text-grey-500">My Purchases</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'myapp:logout' %}" class="mr-6 text=sm font-medium text-grey-500">Welcome {{user.username | capfirst}}, logout?</a>
+                {% else %}
+                    <a href="{% url 'myapp:login' %}" class="mr-6 text=sm font-medium text-grey-500">Login</a>
+                {% endif %}
             </div>
 
         </div>
