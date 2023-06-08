@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="flex m-10 w-1/2 justify-center">
+    <div class="flex w-1/2 m-10">
+        {% comment %} {% if profile_info.image %} {% endcomment %}
+            <img src="{{ profile_info.image.url }}" alt="Profile Picture">
+        {% comment %} {% else %} {% endcomment %}
+            {% comment %} <p>No profile picture available for {{profile_info.username}}</p> {% endcomment %}
+        {% comment %} {% endif %} {% endcomment %}
+    </div>
+    <div>
+        <h2>Hey {{profile_info.username}}</h2>
+    </div>
+    
+
+</div>
+
+{% endblock content %}
+
+

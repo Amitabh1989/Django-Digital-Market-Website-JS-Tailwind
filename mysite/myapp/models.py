@@ -26,3 +26,12 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return f'{self.products}'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default="profile/profilepic.gif", upload_to="profile")
+    location = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return f'{self.user} profile created!'
