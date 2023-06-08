@@ -15,8 +15,11 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from .models import Product, Order
+from .models import Product, Order, Profile
 from django.core.exceptions import PermissionDenied
+from django.db.models import Sum, Count
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 
 import stripe
@@ -334,7 +337,13 @@ class UserRegistrationView(CreateView):
         print(f"User password : {user.password}")
         user.save()
         return redirect(reverse('myapp:login'))
-    
+
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = Profile
+    template_name = 'myapp/profile.html'
+    context_object_name = "profile_info" 
+
+
 class MyPurchaseView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'myapp/purchases.html'
@@ -345,3 +354,48 @@ class MyPurchaseView(LoginRequiredMixin, ListView):
         queryset = queryset.filter(customer_email=self.request.user.email)
         print(f"Products by {self.request.user} are {queryset}")
         return queryset
+
+class SalesView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = "myapp/sales.html"
+    context_object_name = "object_list"
+
+    def get_queryset(self) -> QuerySet[Any]:
+        queryset = super().get_queryset()
+        print(f"Queryset : {queryset}")
+        queryset = queryset.filter(products__seller=self.request.user)
+        total_sales = queryset.aggregate(Sum("amount"))
+
+        start_date = timezone.now() - timedelta(days=30)
+        quarter_date = timezone.now() - timedelta(days=90)
+        weekly_date = timezone.now() - timedelta(days=7)
+        
+        last_30_days_data = queryset.filter(created_on__range=[start_date, timezone.now()])
+        last_30_days_sales = last_30_days_data.aggregate(Sum("amount"))
+
+        quarterly_data = queryset.filter(created_on__range=[quarter_date, timezone.now()])
+        quarterly_sales = quarterly_data.aggregate(Sum("amount"))
+
+        weekly_data = queryset.filter(created_on__range=[weekly_date, timezone.now()])
+        weekly_sales = weekly_data.aggregate(Sum("amount"))
+        
+        monthly_sales_by_day = last_30_days_data.values("created_on__date").order_by("created_on__date").annotate(daily_sales=Sum('amount'))
+        # monthly_sales_by_day = last_30_days_data.values("created_on__date").annotate(daily_sales=Sum('amount'))
+        print(f"monthly_sales_by_day : {monthly_sales_by_day}")
+
+        product_sales = queryset.values("products__name").order_by("products__name").annotate(sale_count=Count('products__name')).annotate(sales=Sum("amount"))
+        print(f"product_sales : {product_sales}")
+        
+        product_sales1 = queryset.values("products__name").order_by("products__name").annotate(sale_count=Sum("amount"))
+        print(f"product_sales1 : {product_sales1}")
+
+        context = {
+            "queryset": queryset,
+            "total_sales": total_sales,
+            "30day_sales": last_30_days_sales,
+            "quarterly_sales": quarterly_sales,
+            "weekly_sales" : weekly_sales,
+            "monthly_sales_by_day": monthly_sales_by_day,
+            "product_sales": product_sales
+        }
+        return context

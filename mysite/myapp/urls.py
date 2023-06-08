@@ -4,7 +4,7 @@ from .views import (
     SuccessView, PaymentFailedView, CheckoutView, ProductFormView,
     ProductUpdateView, EditSuccessView, DeleteProductView,
     DeleteSuccessView, DashboardView, UserRegistrationView,
-    PermissionDenied, MyPurchaseView
+    PermissionDenied, MyPurchaseView, SalesView, UserProfileView
     )
 from django.contrib.auth import views as auth_views
 
@@ -29,4 +29,6 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name='myapp/logout.html'), name='logout'),
     path("permission_denied/", PermissionDenied.as_view(), name='permission_denied'),
     path("purchases/", MyPurchaseView.as_view(), name='purchases'),
+    path("sales/", SalesView.as_view(), name='sales'),
+    path("profile/<int:pk>", UserProfileView.as_view(), name='profile'),
 ]
